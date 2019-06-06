@@ -1,4 +1,3 @@
-
 {
   "parameters": [{ "name":"appVersion", "value":"FY20Q2"}],
   "reference": {"fileName":"DigitalBank_Release.json", "fileSource":"PipelineAsCode"}
