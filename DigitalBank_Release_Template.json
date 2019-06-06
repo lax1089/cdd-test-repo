@@ -1,14 +1,14 @@
 {
     "objects": [{
             "application": "Local|DigitalBank Web",
-            "name": "1.0",
+            "name": "${appVersion}",
             "kind": "ApplicationVersion"
         }, {
             "application": "Local|DigitalBank Reporting",
-            "name": "1.1",
+            "name": "${appVersion}",
             "kind": "ApplicationVersion"
         }, {
-            "applicationVersion": "Local|DigitalBank Reporting/1.1",
+            "applicationVersion": "Local|DigitalBank Reporting/${appVersion}",
             "name": "Rally User Stories - Reporting",
             "kind": "ContentSource",
             "endpoint": "Rally",
@@ -21,7 +21,7 @@
             },
             "type": "Add Content"
         }, {
-            "applicationVersion": "Local|DigitalBank Web/1.0",
+            "applicationVersion": "Local|DigitalBank Web/${appVersion}",
             "name": "Rally User Stories",
             "kind": "ContentSource",
             "endpoint": "Rally",
@@ -35,9 +35,9 @@
             },
             "type": "Add Content"
         }, {
-            "applicationVersion": "Local|DigitalBank Web/1.0",
+            "applicationVersion": "Local|DigitalBank Web/${appVersion}",
             "commitRegularExpression": "^[ \\\\t]*([A-Za-z0-9_]+)",
-            "name": "1.0_commitSource",
+            "name": "${appVersion}_commitSource",
             "kind": "CommitSource",
             "endpoint": "GitHub",
             "plugin": "GitHub/1.0.2",
@@ -47,9 +47,9 @@
             },
             "type": "Get Commit Messages"
         }, {
-            "applicationVersion": "Local|DigitalBank Reporting/1.1",
+            "applicationVersion": "Local|DigitalBank Reporting/${appVersion}",
             "commitRegularExpression": "^[ \\\\t]*([A-Za-z0-9_]+)",
-            "name": "1.1_commitSource",
+            "name": "${appVersion}_commitSource",
             "kind": "CommitSource",
             "endpoint": "GitHub",
             "plugin": "GitHub/1.0.2",
@@ -60,7 +60,7 @@
             "type": "Get Commit Messages"
         }, {
             "ownerParties": ["alexander.page@broadcom.com"],
-            "applicationVersions": ["Local|DigitalBank Web/1.0", "Local|DigitalBank Reporting/1.1"],
+            "applicationVersions": ["Local|DigitalBank Web/1.0", "Local|DigitalBank Reporting/${appVersion}"],
             "markAsDonePhaseName": "",
             "runOnCreation": false,
             "version": "${relVersion}",
@@ -122,7 +122,7 @@
             "type": "REST"
         }, {
             "phase": "DigitalBankR1/${relVersion}/Dev",
-            "applicationVersions": ["Local|DigitalBank Web/1.0"],
+            "applicationVersions": ["Local|DigitalBank Web/${appVersion}"],
             "previousTasks": ["API Healthcheck"],
             "isDisabled": false,
             "name": "Deploy Web",
@@ -137,7 +137,7 @@
             "type": "Run Job template"
         }, {
             "phase": "DigitalBankR1/${relVersion}/Dev",
-            "applicationVersions": ["Local|DigitalBank Reporting/1.1"],
+            "applicationVersions": ["Local|DigitalBank Reporting/${appVersion}"],
             "previousTasks": ["API Healthcheck"],
             "isDisabled": false,
             "name": "Deploy Reporting",
@@ -156,7 +156,7 @@
             "kind": "Task"
         }, {
             "phase": "DigitalBankR1/${relVersion}/UAT",
-            "applicationVersions": ["Local|DigitalBank Web/1.0"],
+            "applicationVersions": ["Local|DigitalBank Web/${appVersion}"],
             "previousTasks": ["Manual Approval"],
             "isDisabled": false,
             "name": "Deploy Web",
@@ -171,7 +171,7 @@
             "type": "Run Job template"
         }, {
             "phase": "DigitalBankR1/${relVersion}/UAT",
-            "applicationVersions": ["Local|DigitalBank Reporting/1.1"],
+            "applicationVersions": ["Local|DigitalBank Reporting/${appVersion}"],
             "previousTasks": ["Manual Approval"],
             "isDisabled": false,
             "name": "Deploy Reporting",
