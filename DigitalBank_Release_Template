@@ -1,0 +1,210 @@
+{
+    "objects": [{
+            "application": "Local|DigitalBank Web",
+            "name": "1.0",
+            "kind": "ApplicationVersion"
+        }, {
+            "application": "Local|DigitalBank Reporting",
+            "name": "1.1",
+            "kind": "ApplicationVersion"
+        }, {
+            "applicationVersion": "Local|DigitalBank Reporting/1.1",
+            "name": "Rally User Stories - Reporting",
+            "kind": "ContentSource",
+            "endpoint": "Rally",
+            "plugin": "Rally Platform/2.6",
+            "parameters": {
+                "project": "AlexP Demo Project",
+                "importFromChildProject": "false",
+                "type": "User Story",
+                "tags": "DigitalBank Reporting"
+            },
+            "type": "Add Content"
+        }, {
+            "applicationVersion": "Local|DigitalBank Web/1.0",
+            "name": "Rally User Stories",
+            "kind": "ContentSource",
+            "endpoint": "Rally",
+            "plugin": "Rally Platform/2.6",
+            "parameters": {
+                "release": "",
+                "project": "AlexP Demo Project",
+                "importFromChildProject": "false",
+                "type": "User Story",
+                "tags": "DigitalBank"
+            },
+            "type": "Add Content"
+        }, {
+            "applicationVersion": "Local|DigitalBank Web/1.0",
+            "commitRegularExpression": "^[ \\\\t]*([A-Za-z0-9_]+)",
+            "name": "1.0_commitSource",
+            "kind": "CommitSource",
+            "endpoint": "GitHub",
+            "plugin": "GitHub/1.0.2",
+            "parameters": {
+                "owner": "lax1089",
+                "repository": "cdd-test-repo"
+            },
+            "type": "Get Commit Messages"
+        }, {
+            "applicationVersion": "Local|DigitalBank Reporting/1.1",
+            "commitRegularExpression": "^[ \\\\t]*([A-Za-z0-9_]+)",
+            "name": "1.1_commitSource",
+            "kind": "CommitSource",
+            "endpoint": "GitHub",
+            "plugin": "GitHub/1.0.2",
+            "parameters": {
+                "owner": "lax1089",
+                "repository": "cdd-test-repo2"
+            },
+            "type": "Get Commit Messages"
+        }, {
+            "ownerParties": ["alexander.page@broadcom.com"],
+            "applicationVersions": ["Local|DigitalBank Web/1.0", "Local|DigitalBank Reporting/1.1"],
+            "markAsDonePhaseName": "",
+            "runOnCreation": false,
+            "version": "${relVersion}",
+            "name": "DigitalBank",
+            "kind": "Release"
+        }, {
+            "release": "DigitalBank/${relVersion}",
+            "environments": ["Dev"],
+            "approvalGate": "AUTOMATIC",
+            "skipTasksWithUnchangedApplications": true,
+            "isApprovalRequired": false,
+            "name": "Dev",
+            "kind": "Phase"
+        }, {
+            "release": "DigitalBank/${relVersion}",
+            "environments": ["UAT"],
+            "approvalGate": "AUTOMATIC",
+            "previousPhase": "Dev",
+            "skipTasksWithUnchangedApplications": true,
+            "isApprovalRequired": false,
+            "name": "UAT",
+            "kind": "Phase"
+        }, {
+            "release": "DigitalBank/${relVersion}",
+            "environments": ["SIT"],
+            "approvalGate": "MANUAL",
+            "previousPhase": "UAT",
+            "skipTasksWithUnchangedApplications": false,
+            "isApprovalRequired": false,
+            "name": "SIT",
+            "kind": "Phase"
+        }, {
+            "release": "DigitalBank/${relVersion}",
+            "environments": ["Prod"],
+            "approvalGate": "MANUAL",
+            "previousPhase": "SIT",
+            "skipTasksWithUnchangedApplications": false,
+            "isApprovalRequired": false,
+            "name": "Prod",
+            "kind": "Phase"
+        }, {
+            "phase": "DigitalBank/${relVersion}/Dev",
+            "isDisabled": false,
+            "name": "Manual Approval",
+            "kind": "Task"
+        }, {
+            "phase": "DigitalBankR1/${relVersion}/Dev",
+            "previousTasks": ["Manual Approval"],
+            "isDisabled": false,
+            "name": "API Healthcheck",
+            "kind": "Task",
+            "endpoint": "REST",
+            "plugin": "REST/2.4",
+            "parameters": {
+                "method": "GET",
+                "statusCheck": "false",
+                "url": "todos/1"
+            },
+            "type": "REST"
+        }, {
+            "phase": "DigitalBankR1/${relVersion}/Dev",
+            "applicationVersions": ["Local|DigitalBank Web/1.0"],
+            "previousTasks": ["API Healthcheck"],
+            "isDisabled": false,
+            "name": "Deploy Web",
+            "kind": "Task",
+            "endpoint": "Ansible",
+            "plugin": "Ansible Tower/1.0.5",
+            "parameters": {
+                "buildOrChangeId": "%DigitalBank Web.last_successful_change%",
+                "templateName": "CDD-Training-04",
+                "templateParameters": ""
+            },
+            "type": "Run Job template"
+        }, {
+            "phase": "DigitalBankR1/${relVersion}/Dev",
+            "applicationVersions": ["Local|DigitalBank Reporting/1.1"],
+            "previousTasks": ["API Healthcheck"],
+            "isDisabled": false,
+            "name": "Deploy Reporting",
+            "kind": "Task",
+            "endpoint": "Ansible",
+            "plugin": "Ansible Tower/1.0.5",
+            "parameters": {
+                "buildOrChangeId": "%DigitalBank Reporting.last_successful_change%",
+                "templateName": "CDD-Training-04"
+            },
+            "type": "Run Job template"
+        }, {
+            "phase": "DigitalBankR1/${relVersion}/UAT",
+            "isDisabled": false,
+            "name": "Manual Approval",
+            "kind": "Task"
+        }, {
+            "phase": "DigitalBankR1/${relVersion}/UAT",
+            "applicationVersions": ["Local|DigitalBank Web/1.0"],
+            "previousTasks": ["Manual Approval"],
+            "isDisabled": false,
+            "name": "Deploy Web",
+            "kind": "Task",
+            "endpoint": "Ansible",
+            "plugin": "Ansible Tower/1.0.5",
+            "parameters": {
+                "buildOrChangeId": "%DigitalBank Web.last_successful_change%",
+                "templateName": "CDD-Training-04",
+                "templateParameters": ""
+            },
+            "type": "Run Job template"
+        }, {
+            "phase": "DigitalBankR1/${relVersion}/UAT",
+            "applicationVersions": ["Local|DigitalBank Reporting/1.1"],
+            "previousTasks": ["Manual Approval"],
+            "isDisabled": false,
+            "name": "Deploy Reporting",
+            "kind": "Task",
+            "endpoint": "Ansible",
+            "plugin": "Ansible Tower/1.0.5",
+            "parameters": {
+                "buildOrChangeId": "%DigitalBank Reporting.last_successful_change%",
+                "templateName": "CDD-Training-04"
+            },
+            "type": "Run Job template"
+        }, {
+            "phase": "DigitalBankR1/${relVersion}/UAT",
+            "previousTasks": ["Deploy Web", "Deploy Reporting"],
+            "isDisabled": false,
+            "name": "Run User Tests",
+            "kind": "Task"
+        }, {
+            "phase": "DigitalBankR1/${relVersion}/SIT",
+            "isDisabled": false,
+            "name": "Manual Approval",
+            "kind": "Task"
+        }, {
+            "phase": "DigitalBankR1/${relVersion}/SIT",
+            "previousTasks": ["Manual Approval"],
+            "isDisabled": false,
+            "name": "Run Integration Tests",
+            "kind": "Task"
+        }, {
+            "phase": "DigitalBankR1/${relVersion}/Prod",
+            "isDisabled": false,
+            "name": "Production Approval",
+            "kind": "Task"
+        }
+    ]
+}
