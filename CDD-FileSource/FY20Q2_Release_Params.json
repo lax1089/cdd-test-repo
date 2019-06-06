@@ -1,6 +1,6 @@
 {
   "parameters": [
-    { "name":"appVersion", "value":"2.0.1" },
+    { "name":"appVersion", "value":"2" },
     { "name":"relVersion", "value":"FY20Q2" },
   ],
   "reference": { "fileName":"DigitalBank_Release.json", "fileSource":"PipelineAsCode" }
