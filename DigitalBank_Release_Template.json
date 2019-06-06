@@ -1,11 +1,11 @@
 {
     "objects": [{
             "application": "Local|DigitalBank Web",
-            "name": "${appVersion}",
+            "name": "${webAppVersion}",
             "kind": "ApplicationVersion"
         }, {
             "application": "Local|DigitalBank Reporting",
-            "name": "${appVersion}",
+            "name": "${reportingAppVersion}",
             "kind": "ApplicationVersion"
         }, {
             "applicationVersion": "Local|DigitalBank Reporting/${appVersion}",
