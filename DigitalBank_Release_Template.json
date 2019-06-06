@@ -107,7 +107,7 @@
             "name": "Manual Approval",
             "kind": "Task"
         }, {
-            "phase": "DigitalBankR1/${relVersion}/Dev",
+            "phase": "DigitalBank/${relVersion}/Dev",
             "previousTasks": ["Manual Approval"],
             "isDisabled": false,
             "name": "API Healthcheck",
@@ -121,7 +121,7 @@
             },
             "type": "REST"
         }, {
-            "phase": "DigitalBankR1/${relVersion}/Dev",
+            "phase": "DigitalBank/${relVersion}/Dev",
             "applicationVersions": ["Local|DigitalBank Web/${appVersion}"],
             "previousTasks": ["API Healthcheck"],
             "isDisabled": false,
@@ -136,7 +136,7 @@
             },
             "type": "Run Job template"
         }, {
-            "phase": "DigitalBankR1/${relVersion}/Dev",
+            "phase": "DigitalBank/${relVersion}/Dev",
             "applicationVersions": ["Local|DigitalBank Reporting/${appVersion}"],
             "previousTasks": ["API Healthcheck"],
             "isDisabled": false,
@@ -150,12 +150,12 @@
             },
             "type": "Run Job template"
         }, {
-            "phase": "DigitalBankR1/${relVersion}/UAT",
+            "phase": "DigitalBank/${relVersion}/UAT",
             "isDisabled": false,
             "name": "Manual Approval",
             "kind": "Task"
         }, {
-            "phase": "DigitalBankR1/${relVersion}/UAT",
+            "phase": "DigitalBank/${relVersion}/UAT",
             "applicationVersions": ["Local|DigitalBank Web/${appVersion}"],
             "previousTasks": ["Manual Approval"],
             "isDisabled": false,
@@ -170,7 +170,7 @@
             },
             "type": "Run Job template"
         }, {
-            "phase": "DigitalBankR1/${relVersion}/UAT",
+            "phase": "DigitalBank/${relVersion}/UAT",
             "applicationVersions": ["Local|DigitalBank Reporting/${appVersion}"],
             "previousTasks": ["Manual Approval"],
             "isDisabled": false,
@@ -184,24 +184,24 @@
             },
             "type": "Run Job template"
         }, {
-            "phase": "DigitalBankR1/${relVersion}/UAT",
+            "phase": "DigitalBank/${relVersion}/UAT",
             "previousTasks": ["Deploy Web", "Deploy Reporting"],
             "isDisabled": false,
             "name": "Run User Tests",
             "kind": "Task"
         }, {
-            "phase": "DigitalBankR1/${relVersion}/SIT",
+            "phase": "DigitalBank/${relVersion}/SIT",
             "isDisabled": false,
             "name": "Manual Approval",
             "kind": "Task"
         }, {
-            "phase": "DigitalBankR1/${relVersion}/SIT",
+            "phase": "DigitalBank/${relVersion}/SIT",
             "previousTasks": ["Manual Approval"],
             "isDisabled": false,
             "name": "Run Integration Tests",
             "kind": "Task"
         }, {
-            "phase": "DigitalBankR1/${relVersion}/Prod",
+            "phase": "DigitalBank/${relVersion}/Prod",
             "isDisabled": false,
             "name": "Production Approval",
             "kind": "Task"
