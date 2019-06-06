@@ -4,5 +4,5 @@
     { "name":"runOnCreation", "value": true },
     { "name":"relVersion", "value":"FY20Q3" }
   ],
-  "reference": { "fileName":"DigitalBank_Release.json", "fileSource":"PipelineAsCode" }
+  "reference": { "fileName":"DigitalBank_Release_Template.json", "fileSource":"PipelineAsCode" }
 }
