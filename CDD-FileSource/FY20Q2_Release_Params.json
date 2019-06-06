@@ -3,7 +3,7 @@
     { "name":"webAppVersion", "value":"2.2.4" },
     { "name":"reportingAppVersion", "value":"2.0.1" },
     { "name":"runOnCreation", "value": true },
-    { "name":"relVersion", "value":"FY19Q3" }
+    { "name":"relVersion", "value":"FY20Q3" }
   ],
   "reference": { "fileName":"DigitalBank_Release_Template.json", "fileSource":"PipelineAsCode" }
 }
