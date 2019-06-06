@@ -1,6 +1,7 @@
 {
   "parameters": [
-    { "name":"appVersion", "value":"2.1.4" },
+    { "name":"webAppVersion", "value":"2.1.4" },
+    { "name":"reportingAppVersion", "value":"2.0.1" },
     { "name":"runOnCreation", "value": true },
     { "name":"relVersion", "value":"FY19Q3" }
   ],
