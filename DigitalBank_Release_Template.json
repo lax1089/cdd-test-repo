@@ -60,7 +60,7 @@
             "type": "Get Commit Messages"
         }, {
             "ownerParties": ["alexander.page@broadcom.com"],
-            "applicationVersions": ["Local|DigitalBank Web/1.0", "Local|DigitalBank Reporting/${reportingAppVersion}"],
+            "applicationVersions": ["Local|DigitalBank Web/${webAppVersion}", "Local|DigitalBank Reporting/${reportingAppVersion}"],
             "markAsDonePhaseName": "",
             "runOnCreation": false,
             "version": "${relVersion}",
