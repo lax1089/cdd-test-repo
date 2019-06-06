@@ -4,18 +4,18 @@
             "applicationVersions": ["Local|DigitalBank Web"],
             "markAsDonePhaseName": "",
             "runOnCreation": false,
-            "version": "FY19Q4",
+            "version": "${appVersion}",
             "name": "DigitalBank R1",
             "kind": "Release"
         }, {
-            "release": "DigitalBank R1/FY19Q4",
+            "release": "DigitalBank R1/${appVersion}",
             "approvalGate": "MANUAL",
             "skipTasksWithUnchangedApplications": false,
             "isApprovalRequired": false,
             "name": "Dev",
             "kind": "Phase"
         }, {
-            "phase": "DigitalBank R1/FY19Q4/Dev",
+            "phase": "DigitalBank R1/${appVersion}/Dev",
             "isDisabled": false,
             "name": "Manual Approval",
             "kind": "Task",
